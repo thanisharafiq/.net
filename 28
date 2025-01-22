@@ -1,0 +1,18 @@
+using System;
+using System.Threading;
+
+class SimpleTimer 
+{
+    static void Main(string[] args) 
+    {
+        Console.WriteLine("Simple Timer");
+        Console.Write("Enter timer duration in seconds: ");
+        int duration = Convert.ToInt32(Console.ReadLine());
+
+        Console.WriteLine("Timer started. Waiting for " + duration + " seconds...");
+
+        Thread.Sleep(duration * 1000);
+
+        Console.WriteLine("Timer stopped.");
+    }
+}
