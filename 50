@@ -1,0 +1,97 @@
+using System;
+
+class SimpleHangmanGame 
+{
+    static void Main(string[] args) 
+    {
+        string word = "hangman";
+        char[] guessedWord = new char[word.Length];
+        int guesses = 6;
+
+        for (int i = 0; i < guessedWord.Length; i++) 
+        {
+            guessedWord[i] = '_';
+        }
+
+        while (guesses > 0) 
+        {
+            Console.Clear();
+            Console.WriteLine("Simple Hangman Game");
+
+            for (int i = 0; i < guessedWord.Length; i++) 
+            {
+                Console.Write(guessedWord[i] + " ");
+            }
+            Console.WriteLine();
+
+            Console.WriteLine($"Guesses remaining: {guesses}");
+
+            Console.Write("Enter your guess: ");
+            string guess = Console.ReadLine();
+
+            if (guess.Length != 1) 
+            {
+                Console.WriteLine("Invalid guess. Please enter a single character.");
+                Console.ReadLine();
+                continue;
+            }
+
+            char guessedChar = guess[0];
+
+            bool correctGuess = false;
+
+            for (int i = 0; i < word.Length; i++) 
+            {
+                if (word[i] == guessedChar) 
+                {
+                    guessedWord[i] = guessedChar;
+                    correctGuess = true;
+                }
+            }
+
+            if (!correctGuess) 
+            {
+                guesses--;
+            }
+
+            if (IsWordGuessed(guessedWord)) 
+            {
+                Console.Clear();
+                Console.WriteLine("Simple Hangman Game");
+
+                for (int i = 0; i < guessedWord.Length; i++) 
+                {
+                    Console.Write(guessedWord[i] + " ");
+                }
+                Console.WriteLine();
+
+                Console.WriteLine("Congratulations! You guessed the word.");
+                break;
+            }
+        }
+
+        if (guesses == 0) 
+        {
+            Console.Clear();
+            Console.WriteLine("Simple Hangman Game");
+
+            for (int i = 0; i < guessedWord.Length; i++) 
+            {
+                Console.Write(guessedWord[i] + " ");
+            }
+            Console.WriteLine();
+
+            Console.WriteLine("Game over! You didn't guess the word.");
+        }
+    }
+
+    static bool IsWordGuessed(char[] guessedWord) 
+    {
+        foreach (char c in guessedWord) 
+        {
+            if (c == '_') 
+            {
+                return false;
+            }
+        }
+        return
