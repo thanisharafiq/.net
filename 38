@@ -1,0 +1,33 @@
+using System;
+
+class SimpleChatbot 
+{
+    static void Main(string[] args) 
+    {
+        Console.WriteLine("Simple Chatbot");
+        Console.WriteLine("Hello! How are you?");
+
+        while (true) 
+        {
+            Console.Write("You: ");
+            string input = Console.ReadLine();
+
+            if (input.ToLower() == "hello") 
+            {
+                Console.WriteLine("Chatbot: Hi! How are you?");
+            } 
+            else if (input.ToLower() == "how are you") 
+            {
+                Console.WriteLine("Chatbot: I'm good, thanks! How about you?");
+            } 
+            else if (input.ToLower() == "exit") 
+            {
+                break;
+            } 
+            else 
+            {
+                Console.WriteLine("Chatbot: Sorry, I didn't understand that.");
+            }
+        }
+    }
+}
