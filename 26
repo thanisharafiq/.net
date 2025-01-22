@@ -1,0 +1,55 @@
+using System;
+
+class SimpleHangmanGame 
+{
+    static void Main(string[] args) 
+    {
+        string word = "hangman";
+        char[] guessedWord = new char[word.Length];
+
+        for (int i = 0; i < guessedWord.Length; i++) 
+        {
+            guessedWord[i] = '_';
+        }
+
+        int lives = 6;
+
+        while (true) 
+        {
+            Console.WriteLine("Simple Hangman Game");
+            Console.WriteLine("Lives: " + lives);
+            Console.WriteLine(new string(guessedWord));
+
+            Console.Write("Enter a letter: ");
+            char letter = Convert.ToChar(Console.ReadLine());
+
+            bool correctGuess = false;
+
+            for (int i = 0; i < word.Length; i++) 
+            {
+                if (word[i] == letter) 
+                {
+                    guessedWord[i] = letter;
+                    correctGuess = true;
+                }
+            }
+
+            if (!correctGuess) 
+            {
+                lives--;
+            }
+
+            if (lives == 0) 
+            {
+                Console.WriteLine("Game over! The word was: " + word);
+                break;
+            }
+
+            if (new string(guessedWord) == word) 
+            {
+                Console.WriteLine("Congratulations! You won!");
+                break;
+            }
+        }
+    }
+}
