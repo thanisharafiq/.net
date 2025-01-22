@@ -1,0 +1,19 @@
+using System;
+
+class SimpleRandomNumberGenerator 
+{
+    static void Main(string[] args) 
+    {
+        Console.WriteLine("Simple Random Number Generator");
+        Console.Write("Enter minimum value: ");
+        int min = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("Enter maximum value: ");
+        int max = Convert.ToInt32(Console.ReadLine());
+
+        Random random = new Random();
+        int randomNumber = random.Next(min, max + 1);
+
+        Console.WriteLine("Generated random number: " + randomNumber);
+    }
+}
