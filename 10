@@ -1,0 +1,15 @@
+using System;
+
+class AreaOfRectangle 
+{
+    static void Main(string[] args) 
+    {
+        Console.Write("Enter length: ");
+        int length = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("Enter width: ");
+        int width = Convert.ToInt32(Console.ReadLine());
+
+        Console.WriteLine("Area: " + (length * width));
+    }
+}
