@@ -1,0 +1,37 @@
+using System;
+
+class SimpleQuiz 
+{
+    static void Main(string[] args) 
+    {
+        int score = 0;
+
+        Console.Write("What is the capital of France? ");
+        string answer1 = Console.ReadLine();
+
+        if (answer1.ToLower() == "paris") 
+        {
+            score++;
+            Console.WriteLine("Correct!");
+        } 
+        else 
+        {
+            Console.WriteLine("Incorrect. The answer is Paris.");
+        }
+
+        Console.Write("What is the largest planet in our solar system? ");
+        string answer2 = Console.ReadLine();
+
+        if (answer2.ToLower() == "jupiter") 
+        {
+            score++;
+            Console.WriteLine("Correct!");
+        } 
+        else 
+        {
+            Console.WriteLine("Incorrect. The answer is Jupiter.");
+        }
+
+        Console.WriteLine("Your final score is: " + score + "/2");
+    }
+}
