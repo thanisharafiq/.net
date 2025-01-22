@@ -1,0 +1,33 @@
+using System;
+using System.Net;
+using System.Net.Sockets;
+using System.Text;
+
+class SimpleWebServer 
+{
+    static void Main(string[] args) 
+    {
+        TcpListener listener = new TcpListener(IPAddress.Any, 8080);
+        listener.Start();
+
+        Console.WriteLine("Simple Web Server started. Listening on port 8080...");
+
+        while (true) 
+        {
+            TcpClient client = listener.AcceptTcpClient();
+            Console.WriteLine("Client connected.");
+
+            NetworkStream stream = client.GetStream();
+            byte[] data = new byte[1024];
+            int bytesRead = stream.Read(data, 0, data.Length);
+            string request = Encoding.ASCII.GetString(data, 0, bytesRead);
+            Console.WriteLine("Request: " + request);
+
+            string response = "Hello, World!";
+            byte[] responseData = Encoding.ASCII.GetBytes(response);
+            stream.Write(responseData, 0, responseData.Length);
+
+            client.Close();
+        }
+    }
+}
