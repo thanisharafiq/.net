@@ -1,0 +1,50 @@
+using System;
+using System.Net;
+using System.Net.Sockets;
+using System.Text;
+using System.Threading;
+
+class SimpleChatServer 
+{
+    static void Main(string[] args) 
+    {
+        TcpListener listener = new TcpListener(IPAddress.Any, 8080);
+        listener.Start();
+
+        Console.WriteLine("Simple Chat Server started. Listening on port 8080...");
+
+        while (true) 
+        {
+            TcpClient client = listener.AcceptTcpClient();
+            Console.WriteLine("Client connected.");
+
+            Thread thread = new Thread(new ParameterizedThreadStart(HandleClient));
+            thread.Start(client);
+        }
+    }
+
+    static void HandleClient(object client) 
+    {
+        TcpClient tcpClient = (TcpClient)client;
+        NetworkStream stream = tcpClient.GetStream();
+
+        while (true) 
+        {
+            byte[] data = new byte[1024];
+            int bytesRead = stream.Read(data, 0, data.Length);
+            string message = Encoding.ASCII.GetString(data, 0, bytesRead);
+            Console.WriteLine("Client says: " + message);
+
+            if (message.ToLower() == "exit") 
+            {
+                break;
+            }
+
+            string response = "Server says: " + message;
+            byte[] responseData = Encoding.ASCII.GetBytes(response);
+            stream.Write(responseData, 0, responseData.Length);
+        }
+
+        tcpClient.Close();
+    }
+}
