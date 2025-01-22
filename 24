@@ -1,0 +1,29 @@
+using System;
+
+class SimpleQuizProgram 
+{
+    static void Main(string[] args) 
+    {
+        int score = 0;
+
+        Console.WriteLine("Simple Quiz Program");
+
+        Console.Write("What is the capital of France? ");
+        string answer1 = Console.ReadLine();
+
+        if (answer1.ToLower() == "paris") 
+        {
+            score++;
+        }
+
+        Console.Write("What is the largest planet in our solar system? ");
+        string answer2 = Console.ReadLine();
+
+        if (answer2.ToLower() == "jupiter") 
+        {
+            score++;
+        }
+
+        Console.WriteLine("Your final score is: " + score + "/2");
+    }
+}
