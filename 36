@@ -1,0 +1,44 @@
+using System;
+
+class SimpleGame 
+{
+    static void Main(string[] args) 
+    {
+        int health = 100;
+
+        while (health > 0) 
+        {
+            Console.WriteLine("Simple Game");
+            Console.WriteLine("Your health: " + health);
+            Console.WriteLine("1. Attack");
+            Console.WriteLine("2. Heal");
+            Console.WriteLine("3. Exit");
+
+            Console.Write("Enter choice: ");
+            int choice = Convert.ToInt32(Console.ReadLine());
+
+            switch (choice) 
+            {
+                case 1:
+                    health -= 10;
+                    Console.WriteLine("You attacked!");
+                    break;
+                case 2:
+                    health += 10;
+                    if (health > 100) 
+                    {
+                        health = 100;
+                    }
+                    Console.WriteLine("You healed!");
+                    break;
+                case 3:
+                    return;
+                default:
+                    Console.WriteLine("Error! Invalid choice.");
+                    break;
+            }
+        }
+
+        Console.WriteLine("Game over. You died.");
+    }
+}
