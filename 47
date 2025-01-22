@@ -1,0 +1,69 @@
+using System;
+
+class SimpleTicTacToeGame 
+{
+    static void Main(string[] args) 
+    {
+        char[,] board = new char[3, 3] { { '1', '2', '3' }, { '4', '5', '6' }, { '7', '8', '9' } };
+        char currentPlayer = 'X';
+
+        while (true) 
+        {
+            Console.Clear();
+            PrintBoard(board);
+
+            Console.Write($"Player {currentPlayer}, enter your move: ");
+            string move = Console.ReadLine();
+
+            if (IsValidMove(board, move)) 
+            {
+                MakeMove(board, move, currentPlayer);
+
+                if (HasWon(board, currentPlayer)) 
+                {
+                    Console.Clear();
+                    PrintBoard(board);
+                    Console.WriteLine($"Player {currentPlayer} wins!");
+                    break;
+                }
+
+                currentPlayer = (currentPlayer == 'X') ? 'O' : 'X';
+            } 
+            else 
+            {
+                Console.WriteLine("Invalid move. Try again.");
+                Console.ReadLine();
+            }
+        }
+    }
+
+    static void PrintBoard(char[,] board) 
+    {
+        Console.WriteLine($" {board[0, 0]} | {board[0, 1]} | {board[0, 2]} ");
+        Console.WriteLine("---+---+---");
+        Console.WriteLine($" {board[1, 0]} | {board[1, 1]} | {board[1, 2]} ");
+        Console.WriteLine("---+---+---");
+        Console.WriteLine($" {board[2, 0]} | {board[2, 1]} | {board[2, 2]} ");
+    }
+
+    static bool IsValidMove(char[,] board, string move) 
+    {
+        int position = int.Parse(move) - 1;
+        int row = position / 3;
+        int col = position % 3;
+
+        return board[row, col] != 'X' && board[row, col] != 'O';
+    }
+
+    static void MakeMove(char[,] board, string move, char player) 
+    {
+        int position = int.Parse(move) - 1;
+        int row = position / 3;
+        int col = position % 3;
+
+        board[row, col] = player;
+    }
+
+    static bool HasWon(char[,] board, char player) 
+    {
+        // Check rows
