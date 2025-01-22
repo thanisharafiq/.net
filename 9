@@ -1,0 +1,19 @@
+using System;
+
+class GuessingGame 
+{
+    static void Main(string[] args) 
+    {
+        Console.Write("Guess a number (1-10): ");
+        int guess = Convert.ToInt32(Console.ReadLine());
+
+        if (guess == 5) 
+        {
+            Console.WriteLine("You win!");
+        } 
+        else 
+        {
+            Console.WriteLine("Sorry, try again!");
+        }
+    }
+}
