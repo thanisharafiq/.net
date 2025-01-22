@@ -1,0 +1,44 @@
+using System;
+
+class RockPaperScissors 
+{
+    static void Main(string[] args) 
+    {
+        Console.Write("Enter your choice (rock/paper/scissors): ");
+        string userChoice = Console.ReadLine();
+
+        Random random = new Random();
+        int computerChoice = random.Next(1, 4);
+        string computerChoiceString = "";
+
+        switch (computerChoice) 
+        {
+            case 1:
+                computerChoiceString = "rock";
+                break;
+            case 2:
+                computerChoiceString = "paper";
+                break;
+            case 3:
+                computerChoiceString = "scissors";
+                break;
+        }
+
+        Console.WriteLine("Computer chose: " + computerChoiceString);
+
+        if (userChoice == computerChoiceString) 
+        {
+            Console.WriteLine("It's a tie!");
+        } 
+        else if ((userChoice == "rock" && computerChoiceString == "scissors") || 
+                  (userChoice == "paper" && computerChoiceString == "rock") || 
+                  (userChoice == "scissors" && computerChoiceString == "paper")) 
+        {
+            Console.WriteLine("You win!");
+        } 
+        else 
+        {
+            Console.WriteLine("Computer wins!");
+        }
+    }
+}
