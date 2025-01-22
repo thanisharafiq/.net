@@ -1,0 +1,72 @@
+using System;
+using System.Collections.Generic;
+
+class SimpleToDoListApp 
+{
+    static void Main(string[] args) 
+    {
+        List<ToDoItem> toDoList = new List<ToDoItem>();
+
+        while (true) 
+        {
+            Console.WriteLine("Simple To-Do List App");
+            Console.WriteLine("1. Add item");
+            Console.WriteLine("2. View list");
+            Console.WriteLine("3. Exit");
+
+            Console.Write("Enter choice: ");
+            int choice = Convert.ToInt32(Console.ReadLine());
+
+            switch (choice) 
+            {
+                case 1:
+                    AddItem(toDoList);
+                    break;
+                case 2:
+                    ViewList(toDoList);
+                    break;
+                case 3:
+                    return;
+                default:
+                    Console.WriteLine("Invalid choice.");
+                    break;
+            }
+        }
+    }
+
+    static void AddItem(List<ToDoItem> toDoList) 
+    {
+        Console.Write("Enter item name: ");
+        string itemName = Console.ReadLine();
+
+        Console.Write("Enter item description: ");
+        string itemDescription = Console.ReadLine();
+
+        ToDoItem item = new ToDoItem(itemName, itemDescription);
+        toDoList.Add(item);
+
+        Console.WriteLine("Item added successfully.");
+    }
+
+    static void ViewList(List<ToDoItem> toDoList) 
+    {
+        Console.WriteLine("To-Do List:");
+
+        foreach (ToDoItem item in toDoList) 
+        {
+            Console.WriteLine($"Name: {item.Name}, Description: {item.Description}");
+        }
+    }
+}
+
+public class ToDoItem 
+{
+    public string Name { get; set; }
+    public string Description { get; set; }
+
+    public ToDoItem(string name, string description) 
+    {
+        Name = name;
+        Description = description;
+    }
+}
