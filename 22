@@ -1,0 +1,36 @@
+using System;
+
+class SimpleGameProgram 
+{
+    static void Main(string[] args) 
+    {
+        int health = 100;
+
+        while (health > 0) 
+        {
+            Console.WriteLine("Your health: " + health);
+
+            Console.Write("Enter 'attack' to attack or 'heal' to heal: ");
+            string action = Console.ReadLine();
+
+            if (action.ToLower() == "attack") 
+            {
+                health -= 10;
+            } 
+            else if (action.ToLower() == "heal") 
+            {
+                health += 10;
+                if (health > 100) 
+                {
+                    health = 100;
+                }
+            } 
+            else 
+            {
+                Console.WriteLine("Invalid action.");
+            }
+        }
+
+        Console.WriteLine("Game over. You died.");
+    }
+}
