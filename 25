@@ -1,0 +1,57 @@
+using System;
+
+class SimpleDiceGame 
+{
+    static void Main(string[] args) 
+    {
+        Random random = new Random();
+
+        int playerScore = 0;
+        int computerScore = 0;
+
+        while (true) 
+        {
+            Console.WriteLine("Simple Dice Game");
+            Console.WriteLine("1. Roll Dice");
+            Console.WriteLine("2. Exit");
+
+            Console.Write("Enter choice: ");
+            int choice = Convert.ToInt32(Console.ReadLine());
+
+            if (choice == 1) 
+            {
+                int playerRoll = random.Next(1, 7);
+                int computerRoll = random.Next(1, 7);
+
+                Console.WriteLine("Player rolled: " + playerRoll);
+                Console.WriteLine("Computer rolled: " + computerRoll);
+
+                if (playerRoll > computerRoll) 
+                {
+                    playerScore++;
+                    Console.WriteLine("Player wins this round!");
+                } 
+                else if (computerRoll > playerRoll) 
+                {
+                    computerScore++;
+                    Console.WriteLine("Computer wins this round!");
+                } 
+                else 
+                {
+                    Console.WriteLine("It's a tie!");
+                }
+
+                Console.WriteLine("Player score: " + playerScore);
+                Console.WriteLine("Computer score: " + computerScore);
+            } 
+            else if (choice == 2) 
+            {
+                break;
+            } 
+            else 
+            {
+                Console.WriteLine("Invalid choice.");
+            }
+        }
+    }
+}
