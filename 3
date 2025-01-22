@@ -1,0 +1,20 @@
+using System;
+
+class GuessingGame 
+{
+    static void Main(string[] args) 
+    {
+        int numberToGuess = 42;
+        Console.Write("Guess a number: ");
+        int guess = Convert.ToInt32(Console.ReadLine());
+
+        if (guess == numberToGuess) 
+        {
+            Console.WriteLine("You guessed it!");
+        } 
+        else 
+        {
+            Console.WriteLine("Sorry, wrong guess!");
+        }
+    }
+}
