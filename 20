@@ -1,0 +1,25 @@
+using System;
+
+class SimpleChatProgram 
+{
+    static void Main(string[] args) 
+    {
+        Console.Write("Enter your name: ");
+        string name = Console.ReadLine();
+
+        Console.WriteLine("Hello, " + name + "!");
+
+        while (true) 
+        {
+            Console.Write("You: ");
+            string message = Console.ReadLine();
+
+            if (message.ToLower() == "exit") 
+            {
+                break;
+            }
+
+            Console.WriteLine("Bot: " + message);
+        }
+    }
+}
