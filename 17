@@ -1,0 +1,32 @@
+using System;
+
+class BankAccountManager 
+{
+    static void Main(string[] args) 
+    {
+        double balance = 1000;
+
+        Console.WriteLine("Bank Account Manager");
+        Console.WriteLine("Initial Balance: " + balance);
+
+        Console.Write("Enter amount to deposit: ");
+        double deposit = Convert.ToDouble(Console.ReadLine());
+
+        balance += deposit;
+
+        Console.WriteLine("New Balance: " + balance);
+
+        Console.Write("Enter amount to withdraw: ");
+        double withdraw = Convert.ToDouble(Console.ReadLine());
+
+        if (withdraw <= balance) 
+        {
+            balance -= withdraw;
+            Console.WriteLine("New Balance: " + balance);
+        } 
+        else 
+        {
+            Console.WriteLine("Insufficient funds.");
+        }
+    }
+}
