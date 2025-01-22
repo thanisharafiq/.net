@@ -1,0 +1,68 @@
+using System;
+using System.IO;
+
+class SimpleFileExplorer 
+{
+    static void Main(string[] args) 
+    {
+        Console.WriteLine("Simple File Explorer");
+        Console.WriteLine("------------------------");
+
+        string currentDirectory = Directory.GetCurrentDirectory();
+        Console.WriteLine("Current directory: " + currentDirectory);
+
+        while (true) 
+        {
+            Console.Write("Enter command (dir, cd, exit): ");
+            string command = Console.ReadLine();
+
+            switch (command.ToLower()) 
+            {
+                case "dir":
+                    ListFilesAndDirectories(currentDirectory);
+                    break;
+                case "cd":
+                    ChangeDirectory(ref currentDirectory);
+                    break;
+                case "exit":
+                    return;
+                default:
+                    Console.WriteLine("Invalid command.");
+                    break;
+            }
+        }
+    }
+
+    static void ListFilesAndDirectories(string directory) 
+    {
+        Console.WriteLine("Files and directories in " + directory + ":");
+
+        string[] files = Directory.GetFiles(directory);
+        foreach (string file in files) 
+        {
+            Console.WriteLine(file);
+        }
+
+        string[] directories = Directory.GetDirectories(directory);
+        foreach (string dir in directories) 
+        {
+            Console.WriteLine(dir);
+        }
+    }
+
+    static void ChangeDirectory(ref string currentDirectory) 
+    {
+        Console.Write("Enter directory path: ");
+        string newPath = Console.ReadLine();
+
+        if (Directory.Exists(newPath)) 
+        {
+            currentDirectory = newPath;
+            Console.WriteLine("Directory changed to " + currentDirectory);
+        } 
+        else 
+        {
+            Console.WriteLine("Invalid directory path.");
+        }
+    }
+}
